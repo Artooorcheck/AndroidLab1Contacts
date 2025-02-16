@@ -37,6 +37,8 @@ class ContactsAdapter(var items: List<Contact>, var context: Context): RecyclerV
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         if(items[position].icon != null) {
             holder.image.setImageBitmap(items[position].icon)
+        } else {
+            holder.image.setImageResource(R.mipmap.ic_launcher)
         }
         holder.nameArea.text = items[position].name
 
@@ -49,7 +51,7 @@ class ContactsAdapter(var items: List<Contact>, var context: Context): RecyclerV
 
         holder.selectButton.setOnClickListener {
             val intent = Intent(context, CreateContactActivity::class.java).apply {
-                putExtra("contact_id", items[position].id) // Pass item ID
+                putExtra("contact_id", items[position].id)
             }
             context.startActivity(intent)
         }
